@@ -1,0 +1,68 @@
+{
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "terminal.integrated.inheritEnv": false,
+    "breadcrumbs.enabled": false,
+    "remote.SSH.remotePlatform": {
+        "my-user": "linux",
+        "BBBBB": "linux",
+        "my-root": "linux",
+        "WorkMate": "linux",
+        "WorkMate(10.231.210.117)": "linux",
+        "jupyter": "linux",
+        "192.168.179.129": "linux",
+        "10.231.210.166": "linux",
+        "WorkMate(10.231.210.166)": "linux",
+        "ubiteq-room-concier.iot-pf.jp": "linux"
+    },
+    "jupyter.askForKernelRestart": false,
+    "python.analysis.diagnosticMode": "workspace",
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportUnusedImport": "warning",
+    },
+    "diffEditor.renderSideBySide": false,
+    "workbench.startupEditor": "none",
+    "workbench.editor.untitled.hint": "hidden",
+    "explorer.confirmDragAndDrop": false,
+    "terminal.integrated.enableMultiLinePasteWarning": false,
+    "editor.largeFileOptimizations": false,
+    "security.workspace.trust.untrustedFiles": "open",
+    "aws.resources.enabledResources": [
+        "AWS::EC2::Host",
+        "AWS::EC2::SubnetNetworkAclAssociation",
+        "AWS::EC2::VPC"
+    ],
+    "git.autofetch": true,
+    "files.watcherExclude": {
+        "**": true
+    },
+    "gitlens.views.branches.branches.layout": "list",
+    "jupyter.widgetScriptSources": [
+        "jsdelivr.com",
+        "unpkg.com"
+    ],
+    "[python]": {
+        "editor.formatOnType": true,
+        "editor.defaultFormatter": "ms-python.black-formatter",
+    },
+    "javascript.updateImportsOnFileMove.enabled": "never",
+    "explorer.confirmDelete": false,
+    "black-formatter.args": [
+        "--line-length=200"
+    ],
+    "git.enableSmartCommit": true,
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "right"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "files.autoGuessEncoding": true,
+    "[scss]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "prettier.printWidth": 200,
+    "prettier.bracketSameLine": true,
+    "prettier.configPath": "./frontend/.prettierrc"
+}

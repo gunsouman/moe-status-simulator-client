@@ -1,0 +1,184 @@
+.equipBulk {
+  background: #000000d4;
+  color: #fff;
+  inset: 0;
+  z-index: 1200;
+
+  h3 {
+    text-align: left;
+    padding-left: 10px;
+
+    &::before,
+    &::after {
+      display: none;
+    }
+  }
+
+  .header {
+    border-bottom: 1px solid #c2c2c2;
+
+    .close-frame {
+      display: flex;
+      align-items: center;
+    }
+    @media screen and (min-width: 768px) {
+      .equipmentFrame {
+        width: 120px;
+      }
+    }
+    @media screen and (max-width: 768px) {
+      .close-frame {
+        width: 70px;
+      }
+    }
+    .open-request-skill {
+      cursor: pointer;
+    }
+  }
+  .context {
+    height: 100%;
+    overflow: auto;
+    padding-top: 20px;
+
+    > *:last-child {
+      padding-bottom: 150px;
+    }
+  }
+
+  .filters {
+    display: flex;
+    justify-content: space-between;
+
+    .close {
+      width: 110px;
+    }
+
+    > .text {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      padding-left: 20px;
+
+      > * {
+        margin-top: 5px;
+      }
+    }
+
+    > .checks {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+  }
+  section.equipTableSection {
+    margin: 0px 5px;
+    width: calc(100% - 50px);
+  }
+
+  .autocomplete-input {
+    position: relative;
+
+    .CandidateList {
+      position: absolute;
+      min-width: 100%;
+      max-height: 300px;
+      overflow: auto;
+      z-index: 300;
+    }
+    ul {
+      list-style-type: none;
+      text-align: left;
+      padding-inline-start: 0px;
+      background: #444;
+      cursor: pointer;
+      white-space: nowrap;
+      display: table;
+      margin: 0px;
+      width: 100%;
+
+      > li {
+        padding-left: 5px;
+        background: #444;
+        color: #d8d8d8;
+        display: table-row;
+
+        &:hover {
+          box-shadow: 0px 0px 20px 0px #ffe6008c;
+          background: #ff9900d9;
+          color: #ffffff;
+        }
+        span {
+          display: table-cell;
+          padding-right: 5px;
+        }
+
+        &.is-set {
+          color: red;
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    .equipBulk {
+      position: fixed;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    width: 100%;
+
+    ::-webkit-scrollbar {
+      width: 30px;
+    }
+    section.equipTableSection {
+      margin: 0px 5px;
+      width: calc(100% - 15px);
+
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      td::-webkit-scrollbar, th::-webkit-scrollbar {
+        height: 2px;
+      }
+    }
+    
+    .autocomplete-input>input {
+      width: 125px;
+    }
+
+    section.equipTableSection td:first-child, section.equipTableSection th:first-child {
+      width: 130px;
+      display: block;
+      overflow-x: scroll;
+      white-space: nowrap;
+      
+    }
+  }
+}
+
+.skill-request-frame {
+  position: absolute;
+  top: 48px;
+  z-index: 100;
+  background: #000000b5;
+  padding: 5px;
+  border: solid 1px #e6e6e6;
+
+  .request-skills {
+    display: flex;
+    justify-items: start;
+    padding: 0 10px;
+    align-items: flex-start;
+    flex-direction: column;
+
+    label {
+      display: inline-block;
+      width: 105px;
+      text-align: left;
+    }
+    input[type="number"] {
+      width: 40px;
+    }
+  }
+}

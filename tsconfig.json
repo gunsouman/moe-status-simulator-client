@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "noEmit": false,
+      "downlevelIteration": true,
+      "target": "es2021",
+      "module": "commonjs",
+      "strict": true,
+      "esModuleInterop": true,
+      "resolveJsonModule": true, 
+      "strictNullChecks": false,
+      "jsx": "react",
+      // "jsxFactory": "h",
+      // "jsxFragmentFactory": "Fragment"
+    }
+}

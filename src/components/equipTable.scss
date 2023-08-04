@@ -1,0 +1,145 @@
+section.equipTableSection {
+  margin-top: -12px;
+
+  .tableMaster {
+    overflow-y: scroll;
+    // position: absolute;
+    // z-index: 1001;
+    // left: 5px;
+    // right: 5px;
+    // height: 400px;
+    /* padding: 0 5px 5px 5px; */
+    height: 150px;
+    border-collapse: collapse;
+    color: #dadada;
+    text-align: left;
+    resize: vertical;
+    background: #212121f2;
+
+    @media screen and (min-width: 768px) {
+      white-space: nowrap;
+    }
+
+    @media screen and (max-width: 768px) {
+
+      td:first-child, section.equipTableSection th:first-child {
+        width: 130px;
+        display: block;
+        overflow-x: scroll;
+        white-space: nowrap;
+        
+      }
+      td::-webkit-scrollbar, th::-webkit-scrollbar {
+        height: 2px;
+      }
+    }
+    .plus {
+      color: #55caff;
+    }
+    .minus {
+      color: red;
+    }
+    table.equipTable {
+      border-collapse: collapse;
+
+      thead {
+        background: #212121f2;
+        th {
+          cursor: pointer;
+
+          > span {
+            cursor: pointer;
+            display: inline-block;
+          }
+
+          // .part {
+          //   width: 68px;
+          // }
+          // .skill {
+          //   width: 85px;
+          // }
+
+          @media screen and (max-width: 768px) {
+            > * {
+              width: 50px;
+            }
+            .part {
+              width: 44px;
+            }
+            .skill {
+              width: 95px;
+            }
+            .hp,
+            .mp,
+            .st{
+              width: 35px;
+            }
+            .attack,
+            .def,
+            .hit,
+            .agi,
+            .magic {
+              width: 43px;
+            }
+          }
+        }
+      }
+      tbody {
+        tr {
+          transition: background 0.5s;
+          cursor: pointer;
+          border-top: solid 1px #4e4e4e;
+          background: #212121f2;
+          border: none;
+          border-top: solid 1px #4e4e4e;
+
+          &.focus {
+            background: #8a5300d9;
+          }
+
+          &.target {
+            background: #ff9900d9 !important;
+          }
+
+          td.number {
+            text-align: right;
+          }
+        }
+      }
+
+      tr,
+      th,
+      td {
+        word-break: break-all;
+      }
+
+      th:first-child,
+      td:first-child {
+        position: sticky;
+        left: 0;
+        z-index: 1;
+        background-color: inherit; /* オプション */
+      }
+    }
+  }
+}
+
+.equipSelector {
+  section.equipTableSection {
+    margin-top: -12px;
+
+    .tableMaster {
+      overflow-y: scroll;
+      position: absolute;
+      z-index: 1001;
+      left: 5px;
+      right: 5px;
+      height: 400px;
+      /* padding: 0 5px 5px 5px; */
+      white-space: nowrap;
+      border-collapse: collapse;
+      color: #dadada;
+      text-align: left;
+    }
+  }
+}

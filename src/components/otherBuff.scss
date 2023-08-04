@@ -1,0 +1,153 @@
+.otherBuffs {
+  display: flex;
+  justify-content: center;
+
+  .buff-table {
+    margin: auto;
+    border-collapse: collapse;
+
+    .buff-name {
+      display: flex;
+    }
+
+    .buff {
+      vertical-align: top;
+      border-bottom: 1px solid black;
+      padding: 5px 0;
+      
+      .buff-name-cluster{
+        display: flex;
+      }
+
+      > td {
+        padding: 5px 0;
+      }
+
+      > .effects {
+        > * {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .add-effect {
+          line-height: 15px;
+          margin: auto;
+        }
+      }
+    }
+
+    .add-buff {
+      padding-top: 15px;
+      > button {
+        width: 100%;
+      }
+    }
+    // input.search-buff {
+    //   width: 200px;
+    // }
+    input.positive::after {
+      content: "+";
+      position: absolute;
+      right: 5px;
+    }
+
+    .buff-name{
+      .CandidateList {
+        width: 90%;
+        @media screen and (max-width: 768px) {
+          width: auto;
+          left: 3px;
+          right: 3px;
+        }
+      }
+    }
+    .autocomplete-input {
+      .CandidateList {
+        position: absolute;
+        max-height: 300px;
+        overflow: auto;
+        z-index: 1;
+        border: solid 1px #000000;
+      }
+      ul {
+        text-align: left;
+        background: #444;
+        cursor: pointer;
+        display: table;
+        margin: 0px;
+        width: 100%;
+
+        > li {
+          padding-left: 5px;
+          background: #1d1d1d;
+          color: #d8d8d8;
+          display: table-row;
+          border-top: solid 1px #797979;
+
+          &:hover {
+            box-shadow: 0px 0px 20px 0px #ffe6008c;
+            background: #ff9900d9;
+            color: #ffffff;
+          }
+          span {
+            display: table-cell;
+            padding-right: 5px;
+
+            &.ant{
+              max-width:400px
+            }
+          }
+
+          &.is-set {
+            color: red;
+          }
+        }
+      }
+    }
+
+    .is-duplicated > * {
+      color: red !important;
+      > * {
+        color: red !important;
+        > * {
+          color: red !important;
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    .buff-table {
+      width: 90%;
+      display: table;
+      > * {
+        display: table-row-group;
+
+        > .buff {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          align-items: flex-start;
+          justify-content: space-between;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .buff-table {
+      // padding: 0 5px;
+      width: 100%;
+
+      .effects {
+        width: 92%;
+        margin-left: auto;
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+}

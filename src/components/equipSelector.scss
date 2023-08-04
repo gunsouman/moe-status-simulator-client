@@ -1,0 +1,72 @@
+.equipSelector {
+  .equipmentFrame {
+    padding: 0px;
+    padding-bottom: 1px;
+    margin: 0px 3px 6px 3px;
+    font-size: 13px;
+  }
+  
+  @media screen and (min-width: 768px) {
+    .equipmentFrame {
+      width: 210px;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .equipmentFrame {
+      margin: 0px 10px 6px 10px;
+    }
+  }
+
+  .inputEquip {
+    text-align: center;
+    margin-bottom: 5px;
+    > input {
+      width: calc(100% - 20px);
+      &:hover {
+        background: #ff9900d9;
+        box-shadow: 0px 0px 20px 0px #ffe6008c;
+        color: #ffffff;
+        border: 1px solid #000000;
+        animation: fade-in 0.3s ease-in-out forwards;
+        box-sizing: border-box;
+      }
+    }
+  }
+  @keyframes fade-in {
+    0% {
+      background-color: transparent;
+      box-shadow: none;
+    }
+    100% {
+      background: #ff9900d9;
+      box-shadow: 0px 0px 20px 0px #ffe6008c;
+    }
+  }
+
+  .equipInfo {
+    color: #171717;
+    height: 38px;
+
+    .equipNameFrame {
+      display: flex;
+      justify-content: center;
+
+      .equipName {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+    }
+    .overOriginMaterial {
+      right: 97%;
+    }
+  }
+
+  .clearEquip {
+    width: 15px;
+    text-align: center;
+    display: inline-block;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}

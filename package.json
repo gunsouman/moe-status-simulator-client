@@ -1,0 +1,72 @@
+{
+  "name": "moe-status-simulator-front",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start-dev": "npm run developent-env npx serve ./build_dev/",
+    "start-prod": "npm run production-env npx serve ./build_prod/",
+    "build-dev": "npx webpack --config webpack.development.js",
+    "build-prod": "npx webpack --config webpack.production.js",
+    "developent-env": "cross-env GENERATE_SOURCEMAP=true cross-env NODE_ENV=development",
+    "production-env": "cross-env GENERATE_SOURCEMAP=false cross-env NODE_ENV=production",
+    "firebase-init":"firebase init",
+    "firebase-serve":"firebase serve",
+    "firebase-deploy":"firebase deploy"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "engines": {
+    "node": ">=18.16.0"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "babel-loader": "^9.1.2",
+    "babel-preset-env": "^1.7.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^11.0.0",
+    "cross-env": "^7.0.3",
+    "firebase": "^9.22.1",
+    "html-webpack-plugin": "^5.5.3",
+    "mingo": "^6.3.2",
+    "preact": "^10.15.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "terser-webpack-plugin": "^5.3.9",
+    "web-vitals": "^2.1.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.5",
+    "@babel/plugin-transform-react-jsx": "^7.22.5",
+    "@babel/preset-react": "^7.22.5",
+    "css-loader": "^6.8.1",
+    "mini-css-extract-plugin": "^2.7.6",
+    "sass": "^1.63.6",
+    "sass-loader": "^13.3.2",
+    "ts-loader": "^9.4.4",
+    "typescript": "^5.1.6",
+    "webpack": "^5.88.1",
+    "webpack-cli": "^5.1.4"
+  }
+}

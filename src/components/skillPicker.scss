@@ -1,0 +1,59 @@
+/* コンテンツが省略表示される場合 */
+.skills {
+  position: relative;
+  display: block;
+  height: 140px;
+  overflow: hidden;
+  padding: 0 10px;
+  padding-bottom: 15px;
+
+  &.active {
+    height: auto;
+  }
+
+  .gradation {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background: linear-gradient(to bottom, #ececec00, #ececec);
+    z-index: 100;
+  }
+
+  .total-point {
+    font-size: 18px;
+    &over {
+      color: red;
+    }
+  }
+  > .pickers {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .skill-frame {
+      white-space: "nowrap";
+      padding-right: 5px;
+    }
+    @media screen and (max-width: 768px) {
+        .skill-frame {
+          position: relative;
+          display: flex;
+          align-items: center;
+          height: 25px;
+          width: 100%;
+          input{
+            height: 100%;
+            &[type="range"] {
+              width: 175px;
+              height: 27px;
+            }
+            &[type="number"] {
+              width: 40px;
+            }
+            
+          }
+        }
+    }
+  }
+}

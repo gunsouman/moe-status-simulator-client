@@ -1,0 +1,22 @@
+ul.bufflist {
+  width: calc(100% - 35px);
+  max-height: 135px;
+  overflow-y: auto;
+  padding: 0;
+  padding-left: 30px;
+  margin: 0;
+
+  li {
+    list-style: decimal;
+    padding: 0px 10px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+
+  li:hover {
+    background-color: #f2f2f2;
+  }
+  li:nth-child(n + 27) {
+    background-color: rgb(117, 117, 117);
+  }
+}

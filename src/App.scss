@@ -1,0 +1,359 @@
+body {
+  background: #ececec;
+  overscroll-behavior-y: contain;
+}
+
+input {
+  border: 1px solid #ababab;
+  border-radius: 2px;
+  border: 1px solid #ababab;
+  background: #444;
+  color: #d8d8d8;
+}
+
+input[type="text"]:focus,
+input[type="search"]:focus,
+input[type="number"]:focus,
+.focus {
+  box-shadow: 0px 0px 20px 0px #ffe6008c;
+  background: #ff9900d9;
+  color: #ffffff;
+  border: 2px solid #000000;
+}
+
+header {
+  background: #101010;
+  color: #eee;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 10px;
+}
+footer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #222;
+  color: #eee;
+  padding: 4px 0 7px 0;
+  font-size: 12px;
+}
+
+.App {
+  text-align: center;
+  font-family: "メイリオ", "Meiryo", sans-serif;
+  color: #333;
+  font-size: 13px;
+
+  position: absolute;
+  inset: 0;
+
+  >*{
+    &:first-child{
+    }
+    &:last-child{
+      display:none;
+    }
+
+    @media screen and (max-width: 768px) {
+      &:first-child{
+        position: relative;
+        height:80%;
+      }
+      &:last-child{
+        display:block;
+        height:20%;
+      }
+    }
+  }
+}
+
+a {
+  color: #4b8bff;
+}
+
+section.status {
+  display: table-cell;
+  padding: 0 0 0 20px;
+}
+
+.over {
+  color: red;
+  font-weight: bold;
+}
+
+@keyframes openTable {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+section.history {
+  margin: 10px auto 25px auto;
+  width: 90%;
+
+  .log {
+    width: calc(100% - 20px);
+    text-align: left;
+    margin: 10px auto;
+    height: 100px;
+    overflow-y: scroll;
+    background: #f5f5f5;
+    color: #333;
+    padding: 5px;
+  }
+}
+
+article {
+  padding: 4px;
+
+  background: #dbdbdb;
+  color: #dadada;
+  box-shadow: 3px 4px 11px 0px #00000099;
+  border: none;
+
+  .title {
+    background: #ffa667;
+    color: #fff;
+    font-size: 15px;
+  }
+}
+
+.balloon {
+  position: fixed;
+  /* top: -100px; */
+  /* left: 0; */
+  pointer-events: none;
+  display: none; /* 要素を非表示 */
+  padding: 2px;
+  background-color: #1c0b44cc;
+  color: #ffffffcc;
+  font-size: 80%;
+  white-space: nowrap;
+  z-index: 1100;
+  padding-right: 5px;
+  animation: 0.6s openTable;
+  padding: 3px;
+}
+
+.duplicated{
+  color:red;
+}
+.low{
+  color:#55caff;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-track {
+  background: #1f1f1f;
+}
+*::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 10px;
+}
+
+h2 {
+  position: relative;
+  text-align: left;
+  padding-left: 20px;
+  margin-top: 5px;
+  
+  @media screen and (max-width: 768px) {
+    margin-bottom: 30px;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: #000;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 60px;
+    width: calc(100% - 60px);
+    height: 1px;
+    background-color: #000;
+  }
+}
+
+h3 {
+  position: relative;
+  text-align: left;
+  padding-left: 10px;
+  margin-top: 0px;
+  margin-bottom: 2px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background-color: #000;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 30px;
+    width: calc(100% - 30px);
+    height: 1px;
+    background-color: #000;
+  }
+}
+
+.horizontal {
+  position: absolute;
+  display: flex;
+  inset: 0;
+  overflow: auto;
+}
+
+.vertical {
+  display: flex;
+  flex-direction: column;
+}
+
+.font-12 {
+  font-size: 12px;
+}
+.column-2{
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  justify-items: center;
+  padding: 0 10px;
+}
+.column-3{
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: space-between;
+  justify-items: start;
+  padding: 0 10px;
+}
+.column-multi{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+}
+
+.equipInfo .overOriginMaterial,
+.equipTableSection .overOriginMaterial {
+  display: none;
+  border: none;
+  background-color: #4c4a48cc;
+  color: #ffffffcc;
+  box-shadow: 2px 2px 4px 0px #0000002e;
+  z-index: 100;
+  position: absolute;
+  right: 100%;
+  white-space: nowrap;
+  font-size: 12px;
+  animation: 0.2s openTable;
+  padding: 3px;
+}
+.equipInfo:hover .overOriginMaterial,
+.equipTableSection:hover .overOriginMaterial {
+  display: inline; /* インライン要素として表示 */
+}
+
+.equipInfo .overOriginMaterial > *,
+.equipTableSection .overOriginMaterial > * {
+  padding: 0 4px;
+  border-bottom: solid 1px #ececec;
+}
+
+.equipInfo .overOriginMaterial > .headTable,
+.equipTableSection .overOriginMaterial > .headTable {
+  border-bottom: 1px solid #ececec;
+  color: #f1f1f1;
+}
+
+.main.horizontal {
+  > .status-selector {
+    position: relative;
+    width: calc(100% - 310px);
+    z-index: 1000;
+    overflow: auto;
+  }
+  > .status-result {
+    position: fixed;
+    width: 320px;
+    right: 0;
+    height: 100%;
+    z-index: 2000;
+    overflow: auto;
+  }
+}
+.main-tab-frame {
+  display: none;
+  position: relative;
+  z-index: 3000;
+
+  .main-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    height: 40px;
+    background: #ededed;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .main-tab-frame {
+    display: block;
+
+    button {
+      background: #cacaca;
+      flex-grow: 1;
+      border-width: 1px;
+      border-style: ridge;
+      border-color: silver;
+
+      &.selected {
+        background: #ffffff;
+        border-width: 0px;
+      }
+    }
+  }
+  .main.horizontal {
+    top: 40px;
+    > * {
+      width: 100% !important;
+    }
+    > .is-sp-disabled {
+      display: none;
+    }
+  }
+
+  section.status {
+    display: block;
+    padding: 0;
+    order: 3;
+  }
+  .equipmentFrame {
+    margin: 0px 0px 10px 0px;
+  }
+  article {
+    box-shadow: 3px 4px 11px 0px #000000b3;
+  }
+  .equipTableSection {
+    width: 100%;
+    left: 0;
+  }
+  section.equipTableSection tbody tr {
+    font-size: 15px;
+  }
+}

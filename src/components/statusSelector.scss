@@ -1,0 +1,36 @@
+.status-selector-frame {
+  position: relative;
+  padding-bottom: 130px;
+
+  > *:last-child {
+    margin-bottom: 40px;
+  }
+
+  h2 > .clear-button {
+    position: absolute;
+    bottom: -20px;
+    right: 2px;
+    font-size: 10px;
+  }
+
+  #skill-appear-toggle {
+    display: inline-block;
+    position: relative;
+    width: 150px;
+    height: 20px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    color: #000;
+    background: #fff;
+  }
+  
+  @media screen and (min-width: 768px) {
+    .frame {
+      display: flex;
+      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      justify-items: center;
+    }
+  }
+}

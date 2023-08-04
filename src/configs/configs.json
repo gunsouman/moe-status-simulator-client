@@ -1,0 +1,330 @@
+{
+    "TABLE_LIMIT":30,
+    "EQUIP_COLUMNS": [
+        {
+            "Header": "Name",
+            "accessor": "name",
+            "type":"string"
+        },
+        {
+            "Header": "種類",
+            "accessor": "type",
+            "type":"string"
+        },
+        {
+            "Header": "ATK",
+            "accessor": "atk",
+            "sortType": "basic",
+            "type":"number"
+        },
+        {
+            "Header": "MATK",
+            "accessor": "matk",
+            "sortType": "basic",
+            "type":"number"
+        },
+        {
+            "Header": "DEF",
+            "accessor": "def",
+            "sortType": "basic",
+            "type":"number"
+        },
+        {
+            "Header": "ASPD",
+            "accessor": "aspd",
+            "sortType": "basic",
+            "type":"number"
+        }
+    ],
+    "ENCHANTMENT_COLUMNS" :[
+            {
+                "Header": "エンチャント名",
+                "accessor": "name",
+                "sortType": "basic",
+                "type":"string"
+            },
+            {
+                "Header": "レア度",
+                "accessor": "rarelity",
+                "sortType": "basic",
+                "type":"rarelity"
+            },
+            {
+                "Header": "ATK",
+                "accessor": "atk",
+                "sortType": "basic",
+                "type":"number"
+            },
+            {
+                "Header": "ATK(%)",
+                "accessor": "atk_per",
+                "sortType": "basic",
+                "type":"number"
+            },
+            {
+                "Header": "MATK",
+                "accessor": "matk",
+                "sortType": "basic",
+                "type":"number"
+            },
+            {
+                "Header": "MATK(%)",
+                "accessor": "matk_per",
+                "sortType": "basic",
+                "type":"number"
+            },
+            {
+                "Header": "DEF",
+                "accessor": "def",
+                "sortType": "basic",
+                "type":"number"
+            },
+            {
+                "Header": "DEF(%)",
+                "accessor": "def_per",
+                "sortType": "basic",
+                "type":"number"
+            },
+            {
+                "Header": "最大ライフ",
+                "accessor": "life",
+                "sortType": "basic",
+                "type":"number"
+            },
+            {
+                "Header": "最大ライフ(%)",
+                "accessor": "life_per",
+                "sortType": "basic",
+                "type":"number"
+            },
+            {
+                "Header": "最大マナ",
+                "accessor": "mana",
+                "sortType": "basic",
+                "type":"number"
+            },
+            {
+                "Header": "最大マナ(%)",
+                "accessor": "mana_per",
+                "sortType": "basic",
+                "type":"number"
+            },
+            {
+                "Header": "最大満腹度",
+                "accessor": "hunger",
+                "sortType": "basic",
+                "type":"number"
+            },
+            {
+                "Header": "最大満腹度(%)",
+                "accessor": "hunger_per",
+                "sortType": "basic",
+                "type":"number"
+            },
+            {
+                "Header": "最大スタミナ",
+                "accessor": "stamina",
+                "sortType": "basic",
+                "type":"number"
+            },
+            {
+                "Header": "最大スタミナ(%)",
+                "accessor": "stamina_per",
+                "sortType": "basic",
+                "type":"number"
+            },
+            {
+                "Header": "物理クリダメ",
+                "accessor": "crit_dmg",
+                "sortType": "basic",
+                "type":"number"
+            },
+            {
+                "Header": "物理クリ率(%)",
+                "accessor": "crit_per",
+                "sortType": "basic",
+                "type":"number"
+            },
+            {
+                "Header": "魔法クリダメ",
+                "accessor": "mcrit_dmg",
+                "sortType": "basic",
+                "type":"number"
+            },
+            {
+                "Header": "魔法クリ率(%)",
+                "accessor": "mcrit_per",
+                "sortType": "basic",
+                "type":"number"
+            },
+            {
+                "Header": "移動速度",
+                "accessor": "mv",
+                "sortType": "basic",
+                "type":"number"
+            },
+            {
+                "Header": "空中速度",
+                "accessor": "amv",
+                "sortType": "basic",
+                "type":"number"
+            },
+            {
+                "Header": "ASPD",
+                "accessor": "aspd",
+                "sortType": "basic",
+                "type":"number"
+            },
+            {
+                "Header": "スキルCD",
+                "accessor": "skill_cd",
+                "sortType": "basic",
+                "type":"number"
+            },
+            {
+                "Header": "アイテムCD",
+                "accessor": "item_cd",
+                "sortType": "basic",
+                "type":"number"
+            },
+            {
+                "Header": "マナ自然回復速度",
+                "accessor": "mana_recovery_per",
+                "sortType": "basic",
+                "type":"number"
+            },
+            {
+                "Header": "スタミナ自然回復速度",
+                "accessor": "stamina_recovery_per",
+                "sortType": "basic",
+                "type":"number"
+            },
+            {
+                "Header": "DEFをATKに加算(%)",
+                "accessor": "def_for_atk",
+                "sortType": "basic",
+                "type":"number"
+            },
+            {
+                "Header": "DEFをMATKに加算(%)",
+                "accessor": "def_for_matk",
+                "sortType": "basic",
+                "type":"number"
+            },
+            {
+                "Header": "ライフをATKに加算(%)",
+                "accessor": "life_for_atk",
+                "sortType": "basic",
+                "type":"number"
+            },
+            {
+                "Header": "ライフをMATKに加算(%)",
+                "accessor": "life_for_matk",
+                "sortType": "basic",
+                "type":"number"
+            },
+            {
+                "Header": "マナをATKに加算(%)",
+                "accessor": "mana_for_atk",
+                "sortType": "basic",
+                "type":"number"
+            },
+            {
+                "Header": "マナをMATKに加算(%)",
+                "accessor": "mana_for_matk",
+                "sortType": "basic",
+                "type":"number"
+            }
+    ],
+    "INPUT_STATUS_LABELS":{
+        "life":"ライフ",
+        "stamina":"スタミナ",
+        "mana":"MANA",
+        "atk":"ATK",
+        "matk":"MATK",
+        "def":"DEF",
+        "hunger":"満腹度"
+    },
+    "STATUS_LABELS":{
+        "life":"ライフ",
+        "stamina":"スタミナ",
+        "mana":"MANA",
+        "atk":"ATK",
+        "matk":"MATK",
+        "def":"DEF",
+        "hunger":"満腹度",
+        "mv":"移動速度",
+        "amv":"空中速度",
+        "aspd":"ASPD",
+        "item_cd":"アイテムCD",
+        "skill_cd":"スキルCD",
+        "crit_per":"物理クリ率",
+        "crit_dmg":"物理クリダメ",
+        "mcrit_per":"魔法クリ率",
+        "mcrit_dmg":"魔法クリダメ",
+        "hunger_utility_per":"満腹度消費量",
+        "mana_recovery_per":"マナ自然回復速度",
+        "stamina_recovery_per":"スタミナ自然回復速度"
+    },
+    "EQUIP_LABELS":{
+        "one_h_sword_equips":"片手剣",
+        "two_h_sword_equips":"両手剣",
+        "spear_equips":"槍",
+        "bow_equips":"弓",
+        "gun_equips":"銃",
+        "rod_equips":"魔法杖",
+        "tool_equips":"ツール",
+        "shield_equips":"盾",
+        "head_equips":"頭装備",
+        "body_equips":"体装備",
+        "accessory_equips":"アクセサリー",
+        "glider_equips":"グライダー",
+        "other_equips":"弾・その他"
+    },
+    "UNIQUE_LABELS":{
+        "def_for_atk":"防御反映",
+        "def_for_matk":"防御反映",
+        "life_for_atk":"ライフ反映",
+        "life_for_matk":"ライフ反映",
+        "mana_for_atk":"マナ反映",
+        "mana_for_matk":"マナ反映"
+    },
+    "EQUIP_STATUS_KEY_LABELS":{
+        "name":"アイテム名", 
+        "rarelity":"レアリティ", 
+        "atk":"ATK", 
+        "matk":"MATK", 
+        "def":"DEF",
+        "aspd":"ASPD",
+        "materials":"materials"
+    },
+    "STATUS_RANGES":{
+        "mv":[null, 100],
+        "amv":[null, 100],
+        "aspd":[null, 100],
+        "item_cd":[],
+        "skill_cd":[-70, null],
+        "crit_per":[null, 90],
+        "mcrit_per":[null, 90],
+        "hunger_utility_per":[-90, null],
+        "mana_recovery_per":[null, 100],
+        "stamina_recovery_per":[null, 200]
+    },
+    "RARELITY_INFOS":[
+        {"name":"コモン","color":"#a5e9ff"},
+        {"name":"アンコモン","color":"#009e25"},
+        {"name":"レア","color":"#0075c8"},
+        {"name":"エピック","color":"#dd34ff"},
+        {"name":"レジェンダリー","color":"#ffee1d"}
+    ],
+    "EQUIP_PARTS":{
+        "right_hand":"右手",
+        "head":"頭装備",
+        "body":"体",
+        "left_hand":"左手",
+        "accessory1":"アクセサリー1",
+        "accessory2":"アクセサリー2",
+        "glider":"グライダー",
+        "other":"戦闘補助"
+    }
+}
