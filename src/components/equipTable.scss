@@ -41,7 +41,9 @@ section.equipTableSection {
     }
     table.equipTable {
       border-collapse: collapse;
-
+td>* {
+  pointer-events: none;
+}
       thead {
         background: #212121f2;
         th {
@@ -104,6 +106,9 @@ section.equipTableSection {
           td.number {
             text-align: right;
           }
+          td>* {
+            pointer-events: none;
+          }
         }
       }
 
@@ -143,3 +148,5 @@ section.equipTableSection {
     }
   }
 }
+
+

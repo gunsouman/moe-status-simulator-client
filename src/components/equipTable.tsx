@@ -446,8 +446,8 @@ export default class EquipTable extends React.Component<Props, State> {
                         : ""
                     }`}
                     tabIndex={0}
-                    onMouseUp={(e) => this.selectEquip(e, tableEquip.name)}
-                    // onTouchEnd={(e) => this.selectEquip(e, tableEquip.name)}
+                    // onMouseUp={(e) => this.selectEquip(e, tableEquip.name)}
+                    onClick={(e) => this.selectEquip(e, tableEquip.name)}
                     onTouchStart={(e) => this.onFocus(e, tableEquip)}
                     onMouseEnter={(e) => {
                       this.onMouseEnter(e);

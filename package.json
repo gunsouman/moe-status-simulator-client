@@ -4,6 +4,7 @@
   "type": "module",
   "private": true,
   "scripts": {
+    "start": "react-scripts start",
     "start-dev": "npm run developent-env npx serve ./build_dev/",
     "start-prod": "npm run production-env npx serve ./build_prod/",
     "build-dev": "npx webpack --config webpack.development.js",
