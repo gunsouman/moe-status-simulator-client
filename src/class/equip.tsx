@@ -27,12 +27,12 @@ export default class Equip {
   silver_bullets: any = {};
   status_obj: { [key: string]: number } = {};
   回避: number = 0;
-  射程: number = 0;
   必要スキル: { [key: string]: number } = {};
   攻撃間隔: number | null = null;
-  素材: string | null = null;
+  射程: number = 0;
   補正角: number | null = null;
   部位: string = "";
+  素材: string | null = null;
   重さ: number | null = null;
   others: string[] = [];
   特殊条件: string[] = [];
@@ -84,7 +84,6 @@ export default class Equip {
       }
     }
     this.回避 = equip["avoid"];
-    this.射程 = equip["range"];
 
     let skill_obj: { [key: string]: number } = {};
     for (let skill_name in equip["require_skills"]) {
@@ -97,9 +96,10 @@ export default class Equip {
 
     this.必要スキル = skill_obj;
     this.攻撃間隔 = equip["interval"];
-    this.素材 = equip["material"];
+    this.射程 = equip["range"];
     this.補正角 = equip["angle"];
     this.部位 = equip["part"];
+    this.素材 = equip["material"];
     this.重さ = equip["weight"];
     this.others = equip["others"];
     this.特殊条件 = equip["exist_sp_conds"];

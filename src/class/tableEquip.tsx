@@ -66,7 +66,9 @@ interface EquipStatus {
   MP自然回復: { total: number; add: number };
   ST自然回復: { total: number; add: number };
 
+  攻撃間隔: { total: number; add: number; PER: number };
   射程: { total: number; add: number; PER: number };
+  補正角: { total: number; add: number; PER: number };
   重さ: { total: number; add: number };
 }
 
@@ -184,6 +186,7 @@ export default class TableEquip {
 
     let _ATTACK_INTERVAL = _charactor.status.攻撃間隔;
     let _RANGE = _charactor.status.射程;
+    let _ANGLE = _charactor.status.補正角;
     let _WEIGHT_REDUCE = _charactor.status.重さ軽減;
 
     let _SKILL_UP = _charactor.status.スキル効果アップ;
@@ -225,8 +228,9 @@ export default class TableEquip {
       MP自然回復: { total: _MP_REG, add: _MP_REG - charactor.status.MP自然回復 },
       ST自然回復: { total: _ST_REG, add: _ST_REG - charactor.status.ST自然回復 },
 
+      攻撃間隔:{ total: _ATTACK_INTERVAL, add: 0 },
       射程: { total: _RANGE, add: 0 },
-      重さ軽減: { total: _WEIGHT_REDUCE, add: 0 },
+      補正角: { total: _ANGLE, add: 0 },
 
       必要スキル: Object.values(this.targetEquip.必要スキル),
       必要スキル_strs: Object.entries(this.targetEquip.必要スキル).map(([key, value]) => `${key}:${value}`),
@@ -234,8 +238,8 @@ export default class TableEquip {
       part: this.part,
 
       素材: null,
-      補正角: null,
       部位: this.targetEquip.部位,
+      重さ軽減: { total: _WEIGHT_REDUCE, add: 0 },
       備考: "",
     };
   }

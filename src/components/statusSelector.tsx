@@ -185,6 +185,23 @@ export default class StatusSelector extends React.Component<Props, State> {
               );
             })}
           </div>
+          <div key="frame-hand" className="frame" id="hand">
+            {configs["AMMUNITION_CHARACTOR_PARTS"].map((charactor_part_name, i) => {
+              return (
+                <EquipSelector
+                  ref={this.equipSelectorRefs[charactor_part_name]}
+                  key={"equipSelectors_" + charactor_part_name}
+                  parent={this}
+                  charactorPart={charactor_part_name}
+                  name={charactor_part_name}
+                  charactor={this.state.charactor}
+                  equips={this.state.equips}
+                  selectEquipCallback={this.props.updateCharactorCallback}
+                  setSortStatusCallback={this.setSortStatus}
+                />
+              );
+            })}
+          </div>
           <div key="frame-armor" className="frame" id="armor">
             {configs["ARMOR_CHARACTOR_PARTS"].map((charactor_part_name, i) => {
               return (

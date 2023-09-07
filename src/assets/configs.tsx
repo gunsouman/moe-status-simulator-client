@@ -1,9 +1,10 @@
 import race_status from "./race_status.json";
 
 const WEAPON_CHARACTOR_PARTS: string[] = ["左手", "右手"];
+const AMMUNITION_CHARACTOR_PARTS: string[] = ["矢/弾"];
 const ARMOR_CHARACTOR_PARTS: string[] = ["頭(防)", "胴(防)", "手(防)", "パンツ(防)", "靴(防)", "肩(防)", "腰(防)"];
 const ORNAMENT_CHARACTOR_PARTS: string[] = ["頭(装)", "顔(装)", "耳(装)", "指(装)", "胸(装)", "腰(装)", "背中(装)"];
-const EQUIP_CHARACTOR_PARTS: string[] = WEAPON_CHARACTOR_PARTS.concat(ARMOR_CHARACTOR_PARTS, ORNAMENT_CHARACTOR_PARTS);
+const EQUIP_CHARACTOR_PARTS: string[] = WEAPON_CHARACTOR_PARTS.concat(ARMOR_CHARACTOR_PARTS, AMMUNITION_CHARACTOR_PARTS, ORNAMENT_CHARACTOR_PARTS);
 
 interface CONFIGS {
   API_URL: string;
@@ -25,6 +26,7 @@ interface CONFIGS {
   ORNAMENT_EQUIP_PARTS: string[];
 
   WEAPON_CHARACTOR_PARTS: string[];
+  AMMUNITION_CHARACTOR_PARTS: string[];
   ARMOR_CHARACTOR_PARTS: string[];
   ORNAMENT_CHARACTOR_PARTS: string[];
   EQUIP_CHARACTOR_PARTS: string[];
@@ -164,6 +166,7 @@ let configs: CONFIGS = {
   ORNAMENT_EQUIP_PARTS: ["頭(装)", "顔(装)", "耳(装)", "指(装)", "胸(装)", "腰(装)", "背中(装)"],
 
   WEAPON_CHARACTOR_PARTS: WEAPON_CHARACTOR_PARTS,
+  AMMUNITION_CHARACTOR_PARTS: AMMUNITION_CHARACTOR_PARTS,
   ARMOR_CHARACTOR_PARTS: ARMOR_CHARACTOR_PARTS,
   ORNAMENT_CHARACTOR_PARTS: ORNAMENT_CHARACTOR_PARTS,
   EQUIP_CHARACTOR_PARTS: EQUIP_CHARACTOR_PARTS,
@@ -340,7 +343,12 @@ let configs: CONFIGS = {
     { className: "hit", Header: "命中", accessor: "命中", type: "number" },
     { className: "agi", Header: "回避", accessor: "回避", type: "number" },
     { className: "magic", Header: "魔力", accessor: "魔力", type: "number" },
-    { className: "spe_delay", Header: "攻撃ディレイ", accessor: "攻撃ディレイ", type: "number" },
+    { className: "fire_regist", Header: "耐火属性", accessor: "耐火属性", type: "number" },
+    { className: "water_regist", Header: "耐水属性", accessor: "耐水属性", type: "number" },
+    { className: "wind_regist", Header: "耐風属性", accessor: "耐風属性", type: "number" },
+    { className: "earth_regist", Header: "耐地属性", accessor: "耐地属性", type: "number" },
+    { className: "null_regist", Header: "耐無属性", accessor: "耐無属性", type: "number" },
+    { className: "spec_delay", Header: "攻撃ディレイ", accessor: "攻撃ディレイ", type: "number" },
     { className: "magic_delay", Header: "魔法ディレイ", accessor: "魔法ディレイ", type: "number" },
     { className: "hp_reg", Header: "HP自然回復", accessor: "HP自然回復", type: "number" },
     { className: "mp_reg", Header: "MP自然回復", accessor: "MP自然回復", type: "number" },
@@ -350,11 +358,10 @@ let configs: CONFIGS = {
     { className: "swim_speed", Header: "泳ぎ速度", accessor: "泳ぎ速度", type: "number" },
     { className: "spell_move_speed", Header: "詠唱移動速度", accessor: "詠唱移動速度", type: "number" },
     { className: "jump", Header: "ジャンプ力", accessor: "ジャンプ力", type: "number" },
-    { className: "fire_regist", Header: "耐火属性", accessor: "耐火属性", type: "number" },
-    { className: "water_regist", Header: "耐水属性", accessor: "耐水属性", type: "number" },
-    { className: "wind_regist", Header: "耐風属性", accessor: "耐風属性", type: "number" },
-    { className: "earth_regist", Header: "耐地属性", accessor: "耐地属性", type: "number" },
-    { className: "null_regist", Header: "耐無属性", accessor: "耐無属性", type: "number" },
+    { className: "interval", Header: "攻撃間隔", accessor: "攻撃間隔", type: "number" },
+    { className: "range", Header: "射程", accessor: "射程", type: "number" },
+    // { className: "wind_regist", Header: "補正角", accessor: "補正角", type: "number" },
+    { className: "special", Header: "特殊条件", accessor: "特殊条件", type: "string" },
   ],
   DEFAULT_EQUIP_TABLE_COLUMN_NAMES:[
     "name", 

@@ -41,9 +41,9 @@ section.equipTableSection {
     }
     table.equipTable {
       border-collapse: collapse;
-td>* {
-  pointer-events: none;
-}
+      td>* {
+        pointer-events: none;
+      }
       thead {
         background: #212121f2;
         th {
@@ -71,6 +71,10 @@ td>* {
             .skill {
               width: 95px;
             }
+            .spec_delay,
+            .magic_delay{
+              width: 95px;
+            }
             .hp,
             .mp,
             .st{
@@ -80,9 +84,34 @@ td>* {
             .def,
             .hit,
             .agi,
-            .magic {
-              width: 43px;
+            .magic,
+            .range {
+              width: 55px;
             }
+            .fire_regist,
+            .water_regist,
+            .wind_regist,
+            .earth_regist,
+            .null_regist{
+              width: 70px;
+            }
+            .hp_reg,
+            .mp_reg,
+            .st_reg{
+              width: 85px;
+            }
+            .max_weight,
+            .move_speed,
+            .swim_speed,
+            .interval,
+            .special{
+              width: 71px;
+            }
+            .jump,
+            .spell_move_speed{
+              width: 95px;
+            }
+
           }
         }
       }

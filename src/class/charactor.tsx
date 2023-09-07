@@ -12,8 +12,9 @@ export default class Charactor {
   race: string = "newter";
   skillObj: { [key: string]: number } = {}; // スキル値
   partEquipObj: { [key: string]: Equip | null } = {
-    右手: null,
-    左手: null,
+    "右手": null,
+    "左手": null,
+    "矢/弾": null,
     "頭(防)": null,
     "胴(防)": null,
     "手(防)": null,
@@ -49,6 +50,8 @@ export default class Charactor {
     MAX_WEIGHT: 0,
     WEIGHT: 0,
     攻撃間隔: 0,
+    補正角: 0,
+    射程: 0,
     攻撃ディレイ: 0,
     魔法ディレイ: 0,
     詠唱時間: {},
@@ -325,6 +328,8 @@ export default class Charactor {
     this.status.耐無属性 = reg["耐無属性"];
 
     this.status.攻撃間隔 = this.getRightAttackInterval();
+    this.status.射程 = this.getAttackRange();
+    this.status.補正角 = this.getAngle();
     this.status.クリティカル率 = this.getCritical();
     this.status.攻撃ディレイ = this.getSpecialityDelayReduction();
     this.status.魔法ディレイ = this.getSpellDelayReduction();
@@ -379,8 +384,9 @@ export default class Charactor {
     this.race = "newter";
     this.resetSkillValues();
     this.partEquipObj = {
-      右手: null,
-      左手: null,
+      "右手": null,
+      "左手": null,
+      "矢/弾": null,
       "頭(防)": null,
       "胴(防)": null,
       "手(防)": null,
@@ -415,6 +421,8 @@ export default class Charactor {
       MAX_WEIGHT: 0,
       WEIGHT: 0,
       攻撃間隔: 0,
+      射程: 0,
+      補正角: 0,
       攻撃ディレイ: 0,
       魔法ディレイ: 0,
       ディレイ全般: {},
@@ -552,6 +560,10 @@ export default class Charactor {
       if (_equip != null) atk_weapon += this.attackWeaponCalc(_equip);
     }
 
+    // 矢/弾
+    let _equip = this.partEquipObj["矢/弾"];
+    if (_equip != null) atk_weapon += this.attackAmmunitionCalc(_equip);
+    
     // 全装備に表記されたステータス加算値
     let atk_add_status = 0;
     for (let equip_part of configs.EQUIP_CHARACTOR_PARTS) {
@@ -588,7 +600,10 @@ export default class Charactor {
   attackWeaponCalc(_equip: Equip): number {
     return attackWeaponCalc(this, _equip);
   }
-
+  attackAmmunitionCalc(_equip: Equip): number {
+    return attackAmmunitionCalc(this, _equip);
+  }
+  
   /************ 防御力関係 ************/
   getDEFTotalCalc() {
     // スキルと種族のHP反映
@@ -1119,16 +1134,46 @@ export default class Charactor {
 
     return add_status;
   }
-
+  
   getRightAttackInterval(): number {
     // 全装備に表記されたステータス加算値
     let _weapon = 180;
-    let _equip = this.partEquipObj["右手"];
+    let _equip = this.partEquipObj["右手"]; // ボウガン未対応
     if (_equip != null)
       if (_equip.必要スキル["素手"] != null) _weapon = 180 + _equip.攻撃間隔;
       else _weapon = _equip.攻撃間隔;
 
     return _weapon;
+  }
+
+  getAttackRange(): number {
+    let _range = 0;
+    for(let WEAPON_CHARACTOR_PART of configs.WEAPON_CHARACTOR_PARTS){
+      let _equip = this.partEquipObj[WEAPON_CHARACTOR_PART];
+      if (_equip != null && _equip.射程!=null){
+        _range = _equip.射程;
+      }
+    }
+    let _equip = this.partEquipObj["矢/弾"];
+    if (_equip != null && _equip.射程!=null){
+      _range += _equip.射程;
+    }
+    return _range;
+  }
+
+  getAngle(): number {
+    let _range = 0;
+    for(let WEAPON_CHARACTOR_PART of configs.WEAPON_CHARACTOR_PARTS){
+      let _equip = this.partEquipObj[WEAPON_CHARACTOR_PART];
+      if (_equip != null && _equip.補正角!=null){
+        _range = _equip.補正角;
+      }
+    }
+    // let _equip = this.partEquipObj["矢/弾"];
+    // if (_equip != null && _equip.補正角!=null){
+    //   _range += _equip.補正角;
+    // }
+    return _range;
   }
 
   getCritical(): { [delay_key: string]: { [delay_key: string]: number } } {
@@ -1706,6 +1751,10 @@ export default class Charactor {
       res = this.getWeightTotalCalc();
     } else if (status_name === "攻撃間隔") {
       res = this.getRightAttackInterval();
+    } else if (status_name === "射程") {
+      res = this.getAttackRange();
+    } else if (status_name === "補正角") {
+      res = this.getAngle();
     } else if (status_name === "攻撃ディレイ") {
       res = this.getSpecialityDelayReduction();
     } else if (status_name === "魔法ディレイ") {
@@ -1838,6 +1887,16 @@ const attackWeaponCalc = (charactor: Charactor, equip: Equip) => {
     _atk *= skillExpertiseRatio(charactor, equip);
     return _atk;
   }
+};
+
+const attackAmmunitionCalc = (charactor: Charactor, equip: Equip) => {
+  let weapon_atk: number | null = equip.MAX_ATK;
+  if (weapon_atk == null) return 0;
+
+  // 武器によって変えたい
+  let _atk = weapon_atk;
+  _atk *= skillExpertiseRatio(charactor, equip);
+  return _atk;
 };
 
 const defArmorCalc = (charactor: Charactor, equip: Equip) => {
