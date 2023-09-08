@@ -257,13 +257,16 @@ export default class EquipSelector extends React.Component<Props, State> {
                   <div className="equipName">{this.targetEquip.name}</div>
                 </div>
                 <div className="equipStatus">
-                  {["左手", "右手"].indexOf(this.charactorPart) !== -1 && Object.keys(this.targetEquip.必要スキル).indexOf("盾") === -1 && (
+                  {configs.WEAPON_CHARACTOR_PARTS.concat(configs.AMMUNITION_CHARACTOR_PARTS).indexOf(this.charactorPart) !== -1 && Object.keys(this.targetEquip.必要スキル).indexOf("盾") === -1 && (
                     <React.Fragment>ATK:{this.targetEquip.MAX_ATK}&nbsp;</React.Fragment>
                   )}
-                  {["左手", "右手"].indexOf(this.charactorPart) !== -1 && Object.keys(this.targetEquip.必要スキル).indexOf("盾") === -1 && (
+                  {configs.WEAPON_CHARACTOR_PARTS.indexOf(this.charactorPart) !== -1 && Object.keys(this.targetEquip.必要スキル).indexOf("盾") === -1 && (
                     <React.Fragment>攻撃間隔:{this.targetEquip.攻撃間隔}&nbsp;</React.Fragment>
                   )}
-                  {(["左手", "右手"].indexOf(this.charactorPart) === -1 || Object.keys(this.targetEquip.必要スキル).indexOf("盾") !== -1) && (
+                  {configs.WEAPON_CHARACTOR_PARTS.concat(configs.AMMUNITION_CHARACTOR_PARTS).indexOf(this.charactorPart) !== -1 && Object.keys(this.targetEquip.必要スキル).indexOf("盾") === -1 && (
+                    <React.Fragment>射程:{this.targetEquip.射程}&nbsp;</React.Fragment>
+                  )}
+                  {(configs.WEAPON_CHARACTOR_PARTS.concat(configs.AMMUNITION_CHARACTOR_PARTS).indexOf(this.charactorPart) === -1 || Object.keys(this.targetEquip.必要スキル).indexOf("盾") !== -1) && (
                     <React.Fragment>AC:{this.targetEquip.MAX_AC}&nbsp;</React.Fragment>
                   )}
                   {Object.keys(this.targetEquip.必要スキル).indexOf("盾") !== -1 && (

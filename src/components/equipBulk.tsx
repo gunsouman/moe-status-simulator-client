@@ -50,8 +50,9 @@ import EquipTable from "../components/equipTable";
 //   "腰(装)":WaistOrnamentImage,
 // }
 const CHARACTOR_PARTS_IMAGE_OBG: { [charactorPart: string]: any } = {
-  左手: "./img/left_hand.png",
-  右手: "./img/right_hand.png",
+  "左手": "./img/left_hand.png",
+  "右手": "./img/right_hand.png",
+  "矢/弾": "./img/left_hand.png",
   "頭(防)": "./img/head_armor.png",
   "胴(防)": "./img/body_armor.png",
   "手(防)": "./img/arm_armor.png",
@@ -110,17 +111,17 @@ export default class EquipBulk extends React.Component<Props, State> {
 
   constructor(props: Props) {
     super(props);
-
     this.my_ref = React.createRef<HTMLDivElement>();
     this.parent = props.parent;
     this.equips = props.equips;
     this.charactor = props.charactor;
 
+    let _targetEquip_dict: { [key: string]: Equip } = {};
     // configs.EQUIP_PARTS
     for (let _charactorPart of configs.EQUIP_CHARACTOR_PARTS) {
+      _targetEquip_dict[_charactorPart] = null;
       this.equipTableRef_dict[_charactorPart] = React.createRef();
     }
-    let _targetEquip_dict: { [key: string]: Equip } = {};
     for (let _charactorPart in this.charactor.partEquipObj) {
       _targetEquip_dict[_charactorPart] = this.charactor.partEquipObj[_charactorPart];
     }

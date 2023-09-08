@@ -555,14 +555,16 @@ export default class Charactor {
 
     // 武器の攻撃力反映(右手のみ)
     let atk_weapon = 0;
-    for (let equip_part of ["右手"]) {
-      let _equip = this.partEquipObj[equip_part];
-      if (_equip != null) atk_weapon += this.attackWeaponCalc(_equip);
-    }
+    // for (let equip_part of ["右手","左手"]) {
+    //   let _equip = this.partEquipObj[equip_part];
+    //   if (_equip != null) atk_weapon += this.attackWeaponCalc(_equip);
+    // }
 
-    // 矢/弾
-    let _equip = this.partEquipObj["矢/弾"];
-    if (_equip != null) atk_weapon += this.attackAmmunitionCalc(_equip);
+    // // 矢/弾
+    // let _equip = this.partEquipObj["矢/弾"];
+    // if (_equip != null) atk_weapon += this.attackAmmunitionCalc(_equip);
+
+    atk_weapon += this.attackWeaponsCalc();
     
     // 全装備に表記されたステータス加算値
     let atk_add_status = 0;
@@ -597,13 +599,48 @@ export default class Charactor {
     res = Number(res.toFixed(1));
     return res;
   }
+
   attackWeaponCalc(_equip: Equip): number {
     return attackWeaponCalc(this, _equip);
   }
   attackAmmunitionCalc(_equip: Equip): number {
     return attackAmmunitionCalc(this, _equip);
   }
-  
+
+  attackWeaponsCalc(){
+    let _atk = 0;
+    // メイン武器の必要スキルを探索する
+    let skill_type = "素手";
+    // for (let equip_part of ["右手", "左手"].concat(configs.AMMUNITION_CHARACTOR_PARTS)) {
+    for (let equip_part of ["右手", "左手"]) {
+      if(this.partEquipObj[equip_part]==null)continue;
+      if(this.partEquipObj[equip_part].必要スキル["盾"]!=null)continue;
+      skill_type = Object.keys(this.partEquipObj[equip_part].必要スキル)[0];
+    }
+
+    // 必要スキルの武器攻撃力合計値を算出
+    for (let equip_part of ["右手", "左手"].concat(configs.AMMUNITION_CHARACTOR_PARTS)) {
+      if(equip_part === "矢/弾"&&skill_type === "素手")continue; //素手でも矢/弾は無視
+      if(skill_type === "素手" && _atk!==0)continue; //素手でも矢/弾は無視
+
+      let _equip = this.partEquipObj[equip_part];
+      let weapon_atk = (_equip != null && _equip.MAX_ATK != null)?_equip.MAX_ATK:0;
+
+      // weapon_atk+=_equip.MAX_ATK
+      if (skill_type === "素手") {
+        _atk += ((this.skillObj["筋力"] + 300) / 350) 
+              * ((0.3 * this.skillObj["素手"] * (this.skillObj["素手"] + 200) / 300) + weapon_atk) 
+              * skillExpertiseRatio(this, _equip)
+        
+      } else if(_equip != null && _equip.必要スキル[skill_type] != null){
+        _atk += ((this.skillObj["筋力"] + 300) / 350) 
+              * weapon_atk 
+              * skillExpertiseRatio(this, _equip);
+      }
+    }
+
+    return _atk
+  }
   /************ 防御力関係 ************/
   getDEFTotalCalc() {
     // スキルと種族のHP反映
@@ -662,7 +699,7 @@ export default class Charactor {
     let hit_weapon = 0;
     for (let equip_part of ["右手"]) {
       let _equip = this.partEquipObj[equip_part];
-      if (_equip != null) hit_weapon += this.hitWeaponCalc(_equip);
+      hit_weapon += this.hitWeaponCalc(_equip);
     }
 
     // 全装備に表記されたステータス加算値
@@ -697,6 +734,7 @@ export default class Charactor {
     res = Number(res.toFixed(1));
     return res;
   }
+
   hitWeaponCalc(equip: Equip | null): number {
     if (equip == null) {
       return this.skillObj["素手"] * this.getRaceRatio("命中") * 0.8;
@@ -1857,8 +1895,9 @@ const statusAddCalc = (equip: Equip, status_name: string) => {
 // スキル値が必要値の8割未満	0
 // スキル値が8割以上～必要値未満	0.8～1(スキル値/必要値)
 // スキル値が必要値以上	1
-const skillExpertiseRatio = (charactor: Charactor, equip: Equip, skill_name: string | null = null) => {
+const skillExpertiseRatio = (charactor: Charactor, equip: Equip | null , skill_name: string | null = null) => {
   let prop = 1;
+  if(equip==null)return 1;
   let skill_names = skill_name ? [skill_name] : Object.keys(equip.必要スキル);
   for (let skill_name of skill_names) {
     prop *= charactor.skillObj[skill_name] / equip.必要スキル[skill_name];

@@ -185,7 +185,7 @@ export default class StatusSelector extends React.Component<Props, State> {
               );
             })}
           </div>
-          <div key="frame-hand" className="frame" id="hand">
+          <div key="frame-ammunition" className="frame" id="hand">
             {configs["AMMUNITION_CHARACTOR_PARTS"].map((charactor_part_name, i) => {
               return (
                 <EquipSelector

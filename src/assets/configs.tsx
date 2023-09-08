@@ -4,7 +4,7 @@ const WEAPON_CHARACTOR_PARTS: string[] = ["左手", "右手"];
 const AMMUNITION_CHARACTOR_PARTS: string[] = ["矢/弾"];
 const ARMOR_CHARACTOR_PARTS: string[] = ["頭(防)", "胴(防)", "手(防)", "パンツ(防)", "靴(防)", "肩(防)", "腰(防)"];
 const ORNAMENT_CHARACTOR_PARTS: string[] = ["頭(装)", "顔(装)", "耳(装)", "指(装)", "胸(装)", "腰(装)", "背中(装)"];
-const EQUIP_CHARACTOR_PARTS: string[] = WEAPON_CHARACTOR_PARTS.concat(ARMOR_CHARACTOR_PARTS, AMMUNITION_CHARACTOR_PARTS, ORNAMENT_CHARACTOR_PARTS);
+const EQUIP_CHARACTOR_PARTS: string[] = WEAPON_CHARACTOR_PARTS.concat(AMMUNITION_CHARACTOR_PARTS, ARMOR_CHARACTOR_PARTS, ORNAMENT_CHARACTOR_PARTS);
 
 interface CONFIGS {
   API_URL: string;
