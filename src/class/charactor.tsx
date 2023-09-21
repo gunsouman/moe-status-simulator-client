@@ -1900,6 +1900,26 @@ export default class Charactor {
     this.name = _saveData.name;
     this.race = _saveData.race;
 
+    this.partEquipObj = {
+      "右手": null,
+      "左手": null,
+      "矢/弾": null,
+      "頭(防)": null,
+      "胴(防)": null,
+      "手(防)": null,
+      "パンツ(防)": null,
+      "靴(防)": null,
+      "肩(防)": null,
+      "腰(防)": null,
+      "頭(装)": null,
+      "顔(装)": null,
+      "耳(装)": null,
+      "指(装)": null,
+      "胸(装)": null,
+      "腰(装)": null,
+      "背中(装)": null,
+    };
+    
     console.log("_saveData", _saveData);
     this.resetBuffs();
 
@@ -1917,7 +1937,6 @@ export default class Charactor {
       this.addBuff(_buff);
     }
 
-    this.partEquipObj = {};
     for (let part_name in _saveData.partEquipObj) {
       let _equip = Equip.convertJsonToEquip(_saveData.partEquipObj[part_name], equipObj);
       this.setEquip(_equip, part_name);

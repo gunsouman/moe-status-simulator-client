@@ -31,6 +31,7 @@ interface State {
   saveTitleInput: string;
   isOpenModalImport: boolean;
   isOpenModalImportSkill: boolean;
+  isOpenModalText: boolean;
   isOpenModalCaution: boolean;
   isAttackDelay: boolean;
   isManualDelay: boolean;
@@ -57,6 +58,7 @@ export default class StatusResult extends React.Component<Props, State> {
       saveTitleInput: "",
       isOpenModalImportSkill: false,
       isOpenModalImport: false,
+      isOpenModalText: false,
       isOpenModalCaution:false,
       isAttackDelay: false,
       isManualDelay: false,
@@ -72,6 +74,7 @@ export default class StatusResult extends React.Component<Props, State> {
     this.closeAllModal = this.closeAllModal.bind(this);
     this.openModalImport = this.openModalImport.bind(this);
     this.openModalImportSkill = this.openModalImportSkill.bind(this);
+    this.openModalText = this.openModalText.bind(this);
     this.openModalCaution = this.openModalCaution.bind(this);
     this.importSkill = this.importSkill.bind(this);
 
@@ -542,6 +545,7 @@ export default class StatusResult extends React.Component<Props, State> {
     this.setState({
       isOpenModalImportSkill: false,
       isOpenModalImport: false,
+      isOpenModalText: false,
       isOpenModalCaution: false,
     });
   }
@@ -554,6 +558,10 @@ export default class StatusResult extends React.Component<Props, State> {
     this.setState({ isOpenModalImportSkill: true });
   }
 
+  openModalText() {
+    this.setState({ isOpenModalText: true });
+  }
+  
   openModalCaution() {
     this.setState({ isOpenModalCaution: true });
   }
@@ -581,7 +589,7 @@ export default class StatusResult extends React.Component<Props, State> {
   render() {
     return (
       <div className="status-result-frame">
-        {(this.state.isOpenModalImport || this.state.isOpenModalImportSkill || this.state.isOpenModalCaution) && this.renderModalBackground()}
+        {(this.state.isOpenModalImport || this.state.isOpenModalImportSkill || this.state.isOpenModalText || this.state.isOpenModalCaution) && this.renderModalBackground()}
         {this.state.isOpenModalImport && (
           <ImportRef
             parent={this}
@@ -600,6 +608,12 @@ export default class StatusResult extends React.Component<Props, State> {
               this.closeAllModal();
               this.updateStatus();
             }}
+          />
+        )}
+        {this.state.isOpenModalText && (
+          <TextRef
+            parent={this}
+            charactor={this.state.charactor}
           />
         )}
         {this.state.isOpenModalCaution && (
@@ -876,6 +890,9 @@ export default class StatusResult extends React.Component<Props, State> {
             </button>
           </div>
           <div id="other_menu" className="button_list button_list--3col">
+            <button id="export-url" className="button menu" onClick={this.openModalText}>
+              装備をテキスト出力
+            </button>
             <button id="export-url" className="button menu" onClick={this.reset}>
               データクリア
             </button>
@@ -941,7 +958,7 @@ class ImportRef extends React.Component<PropsImportRefRef> {
     return (
       <section className="import-modal" ref={this.my_ref}>
         <div className="content">
-          <h2>テキスト入力</h2>
+          <h2>インポート</h2>
           <div className="items">
             <textarea id="text4" value={this.state.exportText} onChange={this.handleChange}></textarea>
             <div>
@@ -1016,7 +1033,7 @@ class SkillImportRef extends React.Component<PropsSkillImportRef> {
     return (
       <section className="import-skill-modal" ref={this.my_ref}>
         <div className="content">
-          <h2>テキスト入力</h2>
+          <h2>スキルインポート</h2>
           <div className="items">
             <textarea id="text4" value={this.state.importText} onChange={this.handleChange}></textarea>
             <div>
@@ -1037,6 +1054,44 @@ class SkillImportRef extends React.Component<PropsSkillImportRef> {
   }
 }
 
+interface PropsTextRef {
+  parent: any;
+  charactor: Charactor;
+}
+
+class TextRef extends React.Component<PropsTextRef> {
+  my_ref: React.RefObject<HTMLDivElement>;
+  getText = ():string => {
+    let text = "";
+    const convert:{[key:string]:string} = {"パンツ(防)":"パ(防)", "背中(装)":"背(装)"}
+
+    for(let _part of Object.keys(this.props.charactor.partEquipObj)){
+      let _equip = this.props.charactor.partEquipObj[_part]
+
+      text+=((convert[_part]!=null)?convert[_part]:_part)+": "+((_equip!=null)?_equip.name:"")+"\n"
+
+    }
+
+    return text;
+  };
+
+  state = {
+    text: this.getText(),
+  };
+
+  render() {
+    return (
+      <section className="import-skill-modal" ref={this.my_ref}>
+        <div className="content">
+          <div className="items">
+            <textarea id="text4" style={{width: "424px", height: "216px"}} value={this.getText()} readOnly></textarea>
+          </div>
+        </div>
+      </section>
+    );
+  }
+}
+
 interface PropsCaution {
   parent: any;
   updateStateFnc?: Function;
@@ -1049,6 +1104,7 @@ class Caution extends React.Component<PropsCaution> {
     return (
       <section className="caution-modal" ref={this.my_ref}>
         <div className="content">
+          <h2>装備をテキスト出力</h2>
           <div className="items">
             {attention_text}
             <div>
