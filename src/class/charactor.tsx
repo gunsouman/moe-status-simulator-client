@@ -175,10 +175,54 @@ export default class Charactor {
     if (_weapon_type === "盾") _weapon_type = null;
     return _weapon_type;
   }
+  
   // 二刀流などの追撃によるディレイは未実装
-  getAttackRate(): number | null {
+  getAttackInterval(): number | null {
     let _attack_rate: number = 180; //素手
     let weapon_type = "素手";
+    if (this.partEquipObj["左手"]) {
+      if (Object.keys(this.partEquipObj["左手"].必要スキル).length > 0) {
+        weapon_type = Object.keys(this.partEquipObj["左手"].必要スキル)[0];
+        if (weapon_type === "盾") {
+          _attack_rate = null;
+        } else if (weapon_type === "素手") {
+          _attack_rate = 180 + this.partEquipObj["左手"].攻撃間隔;
+        } else {
+          _attack_rate = this.partEquipObj["左手"].攻撃間隔;
+        }
+      }
+    }
+    if (this.partEquipObj["右手"]) {
+      if (Object.keys(this.partEquipObj["右手"].必要スキル).length > 0) {
+        weapon_type = Object.keys(this.partEquipObj["右手"].必要スキル)[0];
+        if (weapon_type === "盾") {
+          _attack_rate = null;
+        } else if (weapon_type === "素手") {
+          _attack_rate = 180 + this.partEquipObj["右手"].攻撃間隔;
+        } else {
+          _attack_rate = this.partEquipObj["右手"].攻撃間隔;
+        }
+      }
+    }
+    return _attack_rate;
+  }
+
+  // 二刀流などの追撃によるディレイは未実装
+  getAttackDelay(): number | null {
+    let _attack_rate: number = 180; //素手
+    let weapon_type = "素手";
+    if (this.partEquipObj["左手"]) {
+      if (Object.keys(this.partEquipObj["左手"].必要スキル).length > 0) {
+        weapon_type = Object.keys(this.partEquipObj["左手"].必要スキル)[0];
+        if (weapon_type === "盾") {
+          _attack_rate = null;
+        } else if (weapon_type === "素手") {
+          _attack_rate = 180 + this.partEquipObj["左手"].攻撃間隔;
+        } else {
+          _attack_rate = this.partEquipObj["左手"].攻撃間隔;
+        }
+      }
+    }
     if (this.partEquipObj["右手"]) {
       if (Object.keys(this.partEquipObj["右手"].必要スキル).length > 0) {
         weapon_type = Object.keys(this.partEquipObj["右手"].必要スキル)[0];
@@ -327,7 +371,7 @@ export default class Charactor {
     this.status.耐地属性 = reg["耐地属性"];
     this.status.耐無属性 = reg["耐無属性"];
 
-    this.status.攻撃間隔 = this.getRightAttackInterval();
+    this.status.攻撃間隔 = this.getAttackInterval();
     this.status.射程 = this.getAttackRange();
     this.status.補正角 = this.getAngle();
     this.status.クリティカル率 = this.getCritical();
@@ -1172,17 +1216,6 @@ export default class Charactor {
 
     return add_status;
   }
-  
-  getRightAttackInterval(): number {
-    // 全装備に表記されたステータス加算値
-    let _weapon = 180;
-    let _equip = this.partEquipObj["右手"]; // ボウガン未対応
-    if (_equip != null)
-      if (_equip.必要スキル["素手"] != null) _weapon = 180 + _equip.攻撃間隔;
-      else _weapon = _equip.攻撃間隔;
-
-    return _weapon;
-  }
 
   getAttackRange(): number {
     let _range = 0;
@@ -1217,7 +1250,7 @@ export default class Charactor {
   getCritical(): { [delay_key: string]: { [delay_key: string]: number } } {
     // バフのステータス加算値
     let buff_add_statuses: { [delay_key: string]: any } = {};
-    let _base = this.partEquipObj["右手"] == null ? 17 : 3;
+    let _base = this.isEquipedWeapon() ? 3:17;
     buff_add_statuses["武器"] = _base;
     for (let buff of this.buffs.slice(0, LIMIT_BUFF_NUM)) {
       for (let _effect of buff.effects) {
@@ -1240,6 +1273,27 @@ export default class Charactor {
       }
     }
     return buff_add_statuses;
+  }
+
+  isEquipedWeapon(): boolean {
+    let isEquipedWeapon = false;
+    if (this.partEquipObj["左手"]) {
+      if (Object.keys(this.partEquipObj["左手"].必要スキル).length > 0) {
+        let weapon_type = Object.keys(this.partEquipObj["左手"].必要スキル)[0];
+        if (!(weapon_type === "盾" || weapon_type === "素手")) {
+          isEquipedWeapon = true;
+        }
+      }
+    }
+    if (this.partEquipObj["右手"]) {
+      if (Object.keys(this.partEquipObj["右手"].必要スキル).length > 0) {
+        let weapon_type = Object.keys(this.partEquipObj["右手"].必要スキル)[0];
+        if (!(weapon_type === "盾" || weapon_type === "素手")) {
+          isEquipedWeapon = true;
+        }
+      }
+    }
+    return isEquipedWeapon;
   }
 
   getAllDelayReduction(): { [key: string]: any } {
@@ -1788,7 +1842,7 @@ export default class Charactor {
     } else if (status_name === "重量") {
       res = this.getWeightTotalCalc();
     } else if (status_name === "攻撃間隔") {
-      res = this.getRightAttackInterval();
+      res = this.getAttackInterval();
     } else if (status_name === "射程") {
       res = this.getAttackRange();
     } else if (status_name === "補正角") {

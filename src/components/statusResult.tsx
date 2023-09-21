@@ -130,7 +130,7 @@ export default class StatusResult extends React.Component<Props, State> {
 
     let _weaponType = this.state.charactor.getWeaponType();
 
-    let attack_delay = Number(this.state.charactor.getAttackRate().toFixed(2));
+    let attack_delay = Number(this.state.charactor.getAttackDelay().toFixed(2));
 
     const convertDelayToFrame = (_delay: number) => {
       return _delay / 0.96;
