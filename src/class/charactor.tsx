@@ -169,11 +169,44 @@ export default class Charactor {
 
   getWeaponType(): string | null {
     let _weapon_type: string = "素手";
-    if (this.partEquipObj["右手"])
-      if (Object.keys(this.partEquipObj["右手"].必要スキル).length > 0) _weapon_type = Object.keys(this.partEquipObj["右手"].必要スキル)[0];
-
-    if (_weapon_type === "盾") _weapon_type = null;
+    if (this.partEquipObj["左手"]) {
+      if (Object.keys(this.partEquipObj["左手"].必要スキル).length > 0) {
+        let __weapon_type = Object.keys(this.partEquipObj["左手"].必要スキル)[0];
+        if (!(__weapon_type === "盾" || __weapon_type === "素手")) {
+          _weapon_type = __weapon_type;
+        }
+      }
+    }
+    if (this.partEquipObj["右手"]) {
+      if (Object.keys(this.partEquipObj["右手"].必要スキル).length > 0) {
+        let __weapon_type = Object.keys(this.partEquipObj["右手"].必要スキル)[0];
+        if (!(__weapon_type === "盾" || __weapon_type === "素手")) {
+          _weapon_type = __weapon_type;
+        }
+      }
+    }
     return _weapon_type;
+  }
+
+  isEquipedWeapon(): boolean {
+    let isEquipedWeapon = false;
+    if (this.partEquipObj["左手"]) {
+      if (Object.keys(this.partEquipObj["左手"].必要スキル).length > 0) {
+        let weapon_type = Object.keys(this.partEquipObj["左手"].必要スキル)[0];
+        if (!(weapon_type === "盾" || weapon_type === "素手")) {
+          isEquipedWeapon = true;
+        }
+      }
+    }
+    if (this.partEquipObj["右手"]) {
+      if (Object.keys(this.partEquipObj["右手"].必要スキル).length > 0) {
+        let weapon_type = Object.keys(this.partEquipObj["右手"].必要スキル)[0];
+        if (!(weapon_type === "盾" || weapon_type === "素手")) {
+          isEquipedWeapon = true;
+        }
+      }
+    }
+    return isEquipedWeapon;
   }
   
   // 二刀流などの追撃によるディレイは未実装
@@ -1273,27 +1306,6 @@ export default class Charactor {
       }
     }
     return buff_add_statuses;
-  }
-
-  isEquipedWeapon(): boolean {
-    let isEquipedWeapon = false;
-    if (this.partEquipObj["左手"]) {
-      if (Object.keys(this.partEquipObj["左手"].必要スキル).length > 0) {
-        let weapon_type = Object.keys(this.partEquipObj["左手"].必要スキル)[0];
-        if (!(weapon_type === "盾" || weapon_type === "素手")) {
-          isEquipedWeapon = true;
-        }
-      }
-    }
-    if (this.partEquipObj["右手"]) {
-      if (Object.keys(this.partEquipObj["右手"].必要スキル).length > 0) {
-        let weapon_type = Object.keys(this.partEquipObj["右手"].必要スキル)[0];
-        if (!(weapon_type === "盾" || weapon_type === "素手")) {
-          isEquipedWeapon = true;
-        }
-      }
-    }
-    return isEquipedWeapon;
   }
 
   getAllDelayReduction(): { [key: string]: any } {
